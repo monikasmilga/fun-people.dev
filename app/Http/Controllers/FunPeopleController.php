@@ -1,7 +1,10 @@
 <?php namespace App\Http\Controllers;
 
+use App\models\FunCity;
+use App\models\FunHobbies;
 use App\models\FunPeople;
 use Illuminate\Routing\Controller;
+use Ramsey\Uuid\Uuid;
 
 class FunPeopleController extends Controller {
 
@@ -24,8 +27,23 @@ class FunPeopleController extends Controller {
 	 */
 	public function create()
 	{
-		//
+
+        $data = request()->all();
+        $data['id'] = Uuid::uuid4();
+
+        $record = FunPeople::create($data);
+
+        return view ('formpeople', $record->toArray());
 	}
+
+    public function showCreate()
+    {
+        $config = [];
+        $config['hobbies'] = FunHobbies::pluck('name', 'id');
+        $config['city'] = FunCity::pluck('name', 'id');
+
+        return view ('formpeople', $config);
+    }
 
 	/**
 	 * Store a newly created resource in storage.

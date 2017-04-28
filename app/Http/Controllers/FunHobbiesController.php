@@ -2,6 +2,7 @@
 
 use App\models\FunHobbies;
 use Illuminate\Routing\Controller;
+use Ramsey\Uuid\Uuid;
 
 class FunHobbiesController extends Controller {
 
@@ -22,10 +23,16 @@ class FunHobbiesController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function create()
-	{
-		//
-	}
+    public function create()
+    {
+        $data = request()->all();
+        $data['id'] = Uuid::uuid4();
+
+        $record = FunHobbies::create($data);
+
+        return view ('formhobbies', $record->toArray());
+    }
+
 
 	/**
 	 * Store a newly created resource in storage.

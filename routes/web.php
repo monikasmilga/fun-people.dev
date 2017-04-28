@@ -19,9 +19,31 @@ Route::get('/generate-fake-data/city/{count}', ['uses'=>'FunCityController@gener
 
 //Route::get('/city', ['uses' => '']);
 
-Route::post('/form', ['as' => 'app.city.create', 'uses' => 'FunCityController@create']);
+/**
+ * CITY FORM
+ */
+Route::post('/formcity', ['as' => 'app.city.create', 'uses' => 'FunCityController@create']);
 
-Route::get('/form', function () {
-    return view('form');
+Route::get('/formcity', function () {
+    return view('formcity');
 });
 
+/**
+ * HOBBIES FORM
+ */
+Route::post('/formhobbies', ['as' => 'app.hobbies.create', 'uses' => 'FunHobbiesController@create']);
+
+Route::get('/formhobbies', function () {
+    return view('formhobbies');
+});
+
+/**
+ * PEOPLE FORM
+ */
+Route::post('/formpeople', ['as' => 'app.people.create', 'uses' => 'FunPeopleController@create']);
+
+Route::get('/formpeople', ['uses' => 'FunPeopleController@showCreate']);
+
+/*Route::get('/formpeople', function () {
+    return view('formpeople');
+});*/

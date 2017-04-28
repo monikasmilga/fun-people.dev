@@ -31,9 +31,9 @@ class FunCityController extends Controller {
 	    $data = request()->all();
         $data['id'] = Uuid::uuid4();
 
-	    FunCity::create($data);
+	    $record = FunCity::create($data);
 
-		dd($data) ;
+		return view ('formcity', $record->toArray());
 	}
 
 

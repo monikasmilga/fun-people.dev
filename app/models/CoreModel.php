@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class CoreModel extends Model
 {
     use SoftDeletes;
+
+    public $incrementing = false;
 }
